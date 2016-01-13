@@ -31,4 +31,5 @@ static char *ename[] = {
     /* 127 */ "EKEYEXPIRED", "EKEYREVOKED", "EKEYREJECTED", 
     /* 130 */ "EOWNERDEAD", "ENOTRECOVERABLE", "ERFKILL", "EHWPOISON"
 };
+#define MAX_ENAME 132
 

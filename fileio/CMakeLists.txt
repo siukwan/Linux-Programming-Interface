@@ -1,0 +1,22 @@
+PROJECT (LINUX_FILEIO)
+#显示路径信息
+MESSAGE(STATUS "FileIo:This is BINARY dir" ${LINUX_FILEIO_BINARY_DIR})
+MESSAGE(STATUS "FileIo:This is SOURCE dir" ${LINUX_FILEIO_SOURCE_DIR})
+
+#设置错误函数
+SET(LIB_FUNC_ERR_SRC ../error_functions.cpp)
+MESSAGE(STATUS "LINUX_FILEIO:This is func_err dir" ${LIB_FUNC_ERR_SRC})
+
+#设置get_num编译文件
+SET(GET_NUM_SRC_LIST ../get_num.cpp)
+
+SET(COPY ../COPY.cpp)
+
+#连接库
+ADD_LIBRARY(FuncErr STATIC ${LIB_FUNC_ERR_SRC} )
+ADD_LIBRARY(GetNum STATIC ${GET_NUM_SRC_LIST} )
+
+
+#输出可执行文件
+ADD_EXECUTABLE(copy ${COPY})
+TARGET_LINK_LIBRARIES(copy FuncErr GetNum)
