@@ -1,4 +1,4 @@
-static char *ename[] = {
+static char ename[][20] = {
     /*   0 */ "", 
     /*   1 */ "EPERM", "ENOENT", "ESRCH", "EINTR", "EIO", "ENXIO", 
     /*   7 */ "E2BIG", "ENOEXEC", "EBADF", "ECHILD", 

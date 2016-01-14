@@ -11,6 +11,7 @@ MESSAGE(STATUS "LINUX_FILEIO:This is func_err dir" ${LIB_FUNC_ERR_SRC})
 SET(GET_NUM_SRC_LIST ../lib/get_num.cpp)
 
 SET(COPY copy.cpp)
+SET(SEEKIO seek_io.cpp)
 
 #连接库
 ADD_LIBRARY(FuncErr STATIC ${LIB_FUNC_ERR_SRC} )
@@ -20,3 +21,6 @@ ADD_LIBRARY(GetNum STATIC ${GET_NUM_SRC_LIST} )
 #输出可执行文件
 ADD_EXECUTABLE(copy ${COPY})
 TARGET_LINK_LIBRARIES(copy FuncErr GetNum)
+
+ADD_EXECUTABLE(seek_io ${SEEKIO})
+TARGET_LINK_LIBRARIES(seek_io FuncErr GetNum)
