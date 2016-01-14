@@ -34,7 +34,8 @@ main(int argc,char *argv[])
 		case 'r': //Display bytes at current offset, as text
 		case 'R': //Display bytes at current offset,in hex
 			len = getLong(&argv[ap][1],GN_ANY_BASE,argv[ap]);
-			buf = new char [len];
+			//buf = new char [len];
+			buf = (char*)malloc(len);
 			if(buf == NULL )
 				errExit("malloc");
 
@@ -56,7 +57,8 @@ main(int argc,char *argv[])
 				}
 				printf("\n");
 			}
-			delete buf;
+			//delete buf;
+			free(buf);
 			break;
 
 		case 'w'://Write string at current offset
