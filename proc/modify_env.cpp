@@ -1,7 +1,7 @@
 /*
  * 修改进程环境
  * */
-#define _FNU_SOURCWE
+#define _GNU_SOURCWE
 #include <stdlib.h>
 #include "../lib/tlpi_hdr.h"
 
