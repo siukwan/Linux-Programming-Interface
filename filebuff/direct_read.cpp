@@ -30,7 +30,7 @@ main(int argc,char *argv[])
 	if(buf==NULL)
 		errExit("memalign");
 
-	if(lseek(*fd,offset,SEEK_SET)==-1)
+	if(lseek(fd,offset,SEEK_SET)==-1)
 		errExit("lseek");
 
 	numRead = read(fd,buf,length);
