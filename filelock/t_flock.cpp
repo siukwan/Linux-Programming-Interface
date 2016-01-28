@@ -6,28 +6,50 @@
 #include "../lib/tlpi_hdr.h"
 #include "../lib/curr_time.h"
 
+/*
+ * 对一个文件加锁，睡眠指定的秒数，然后对文件解锁
+ */
+
 int
 main(int argc,char *argv[])
 {
-	int j;
-	char **ep;
+	int fd, lock;
+	const char *lname;
 
-	clearenv();//清除全部的环境变量
+	if(argc<3 || strcmp(argv[1],"--help") ==0 ||strchr("sx",argv[2][0]) == NULL)
+		usageErr("%s file lock [sleep-time]\n"
+				 "    'lock' is 's'(shared) or 'x'(exclusive)\n"
+				 "    optionally followed by 'n'(nonblocking)\n"
+				 "     'secs' specifies time to hold lock\n",argv[0]);
 
-	for(j=1;j<argc;++j)
+	lock = (argv[2][0]=='s')?LOCK_SH:LOCK_EX;
+	if(argv[2][1]=='n')
+		lock |= LOCK_NB;
+
+	fd = open(argv[1],O_RDONLY);
+	if(fd == -1)
+		errExit("open");
+
+	lname = (lock & LOCK_SH) ?"LOCK_SH":"LOCK_EX";
+
+	printf("PID %ld: requesting %s at %s \n",(long) getpid(),lname,currTime("%T"));
+
+	//开始加锁
+	if(flock(fd, lock)==-1)
 	{
-		if(putenv(argv[j])!=0)
-			errExit("putenv: %s",argv[j]);
+		if(errno == EWOULDBLOCK)
+			fatal("PID %ld:already locked - bye!)",(long) getpid());
+		else
+			errExit("flock (PID=%ld)",(long) getpid());
 	}
 
-	if(setenv("GREET","Hello world",0) == -1)
-		errExit("setenv");
+	printf("PID %ld: granted %s at %s\n",(long)getpid(),lname,currTime("%T"));
 
-	unsetenv("BYE");
+	sleep((argc>3)?getInt(argv[3],GN_NONNEG,"sleep-time"):10);
 
-	for(ep = environ; *ep !=NULL;ep++)
-		puts(*ep);
+	printf("PID %ld:releasing %s at %s\n",(long) getpid(),lname,currTime("%T"));
+	if(flock(fd,LOCK_UN)== -1)
+		errExit("flock");
 
 	exit(EXIT_SUCCESS);
-
 }
