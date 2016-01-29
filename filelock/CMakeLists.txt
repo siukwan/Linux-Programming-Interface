@@ -14,6 +14,7 @@ SET(GET_NUM_SRC_LIST ../lib/get_num.cpp)
 SET(CURR_TIME ../lib/curr_time.cpp)
 
 SET(T_FLOCK t_flock.cpp)
+SET(I_FCNTL i_fcntl_locking.cpp)
 
 #连接库
 ADD_LIBRARY(FuncErr STATIC ${LIB_FUNC_ERR_SRC} )
@@ -24,3 +25,7 @@ ADD_LIBRARY(GetNum STATIC ${GET_NUM_SRC_LIST} )
 #输出可执行文件
 ADD_EXECUTABLE(t_flock ${T_FLOCK})
 TARGET_LINK_LIBRARIES(t_flock FuncErr CurrTime GetNum)
+
+
+ADD_EXECUTABLE(i_fcntl_locking ${I_FCNTL})
+TARGET_LINK_LIBRARIES(i_fcntl_locking FuncErr)
