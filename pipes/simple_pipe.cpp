@@ -46,7 +46,7 @@ main(int argc,char *argv[])
 	default://父进程
 		if(close(pfd[0])== -1)//关闭读端
 			errExit("close - parent");
-		if(write(pfd[1],argv[1],strlen(argv[1]))!=strlen(agv[1]))
+		if(write(pfd[1],argv[1],strlen(argv[1]))!=strlen(argv[1]))
 			fatal("parent - partial/failed write");
 
 		if(close(pfd[1])==-1)
