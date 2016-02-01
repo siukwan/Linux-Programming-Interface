@@ -18,6 +18,7 @@ handler(int sig)
 int
 main(int argc,char *argv[])
 {
+	printf("信号总数量为：%ld\n",(long)NSIG);
 	int n,numSecs;
 	sigset_t pendingMask,blockingMask,emptyMask;
 
