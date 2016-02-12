@@ -15,6 +15,8 @@ SET(CURR_TIME ../lib/curr_time.cpp)
 
 SET(SIMPLE_PIPE simple_pipe.cpp)
 SET(PIPE_SYNC pipe_sync.cpp)
+SET(FIFO_SEQNUM_CLIENT fifo_seqnum_client.cpp)
+SET(FIFO_SEQNUM_SERVER fifo_seqnum_server.cpp)
 
 #连接库
 ADD_LIBRARY(FuncErr STATIC ${LIB_FUNC_ERR_SRC} )
@@ -30,3 +32,7 @@ ADD_EXECUTABLE(pipe_sync ${PIPE_SYNC})
 TARGET_LINK_LIBRARIES(pipe_sync FuncErr CurrTime GetNum) 
 
 
+ADD_EXECUTABLE(fifo_seqnum_client ${FIFO_SEQNUM_CLIENT})
+TARGET_LINK_LIBRARIES(fifo_seqnum_client FuncErr CurrTime GetNum) 
+ADD_EXECUTABLE(fifo_seqnum_server ${FIFO_SEQNUM_SERVER})
+TARGET_LINK_LIBRARIES(fifo_seqnum_server FuncErr CurrTime GetNum) 
