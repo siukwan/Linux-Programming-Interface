@@ -19,7 +19,7 @@
 #include <string.h>
 #include <sys/wait.h>
 #include "print_wait_status.h"  /* Declaration of printWaitStatus() */
-#include "tlpi_hdr.h"
+#include "../lib/tlpi_hdr.h"
 
 /* NOTE: The following function employs printf(), which is not
    async-signal-safe (see Section 21.1.2). As such, this function is
