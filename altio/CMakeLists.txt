@@ -12,6 +12,7 @@ MESSAGE(STATUS "LINUX_FILEIO:This is func_err dir" ${LIB_FUNC_ERR_SRC})
 SET(GET_NUM_SRC_LIST ../lib/get_num.cpp)
 
 SET(TSELECT t_select.cpp)
+SET(POLLPIPE poll_pipes.cpp)
 
 #连接库
 ADD_LIBRARY(FuncErr STATIC ${LIB_FUNC_ERR_SRC} )
@@ -21,3 +22,5 @@ ADD_LIBRARY(GetNum STATIC ${GET_NUM_SRC_LIST} )
 #输出可执行文件
 ADD_EXECUTABLE(t_select ${TSELECT})
 TARGET_LINK_LIBRARIES(t_select FuncErr GetNum)
+ADD_EXECUTABLE(poll_pipes ${POLLPIPE})
+TARGET_LINK_LIBRARIES(poll_pipes FuncErr GetNum)
