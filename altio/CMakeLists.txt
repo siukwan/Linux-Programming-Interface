@@ -17,6 +17,7 @@ SET(TTY_FUNC ../lib/tty_functions.cpp)
 SET(TSELECT t_select.cpp)
 SET(POLLPIPE poll_pipes.cpp)
 SET(DEMOSIGIO demo_sigio.cpp)
+SET(EPOLLINPUT epoll_input.cpp)
 
 #连接库
 ADD_LIBRARY(FuncErr STATIC ${LIB_FUNC_ERR_SRC} )
@@ -33,3 +34,6 @@ TARGET_LINK_LIBRARIES(poll_pipes FuncErr GetNum)
 
 ADD_EXECUTABLE(demo_sigio ${DEMOSIGIO})
 TARGET_LINK_LIBRARIES(demo_sigio FuncErr GetNum TTY)
+
+ADD_EXECUTABLE(epoll_input ${EPOLLINPUT})
+TARGET_LINK_LIBRARIES(epoll_input FuncErr GetNum)

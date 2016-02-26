@@ -25,11 +25,11 @@ main(int argc, char *argv[])
 		fd = open(argv[j],O_RDONLY);
 		if(fd == -1)
 			errExit("open");
-		printf("Opened \"%s\" on fd %d\n)",argv[j],fd);
+		printf("Opened \"%s\" on fd %d\n",argv[j],fd);
 
 		ev.events = EPOLLIN; //Only interested in input events
 		ev.data.fd = fd;
-		if(epoll_ctl(epfd,EPOLL_CtL_ADD,df,&ev) == -1)
+		if(epoll_ctl(epfd,EPOLL_CTL_ADD,fd,&ev) == -1)
 			errExit("epoll_ctl");
 	}
 
@@ -61,7 +61,7 @@ main(int argc, char *argv[])
 
 			if(evlist[j].events & EPOLLIN)
 			{
-				s = read(eclist[j].data.fd, buf ,MAX_BUF);
+				s = read(evlist[j].data.fd, buf ,MAX_BUF);
 				if(s == -1)
 					errExit("read");
 				printf("   read %d bytes:%.*s\n",s,s,buf);
