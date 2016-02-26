@@ -54,7 +54,7 @@ main(int argc, char *argv[])
 			while(read(STDIN_FILENO,&ch,1)>0 && !done)
 			{
 				printf("cnt=%d; read %c\n",cnt,ch);
-				done = ch == '#;
+				done = ch == '#';
 			}
 			gotSigio = 0;
 		}
