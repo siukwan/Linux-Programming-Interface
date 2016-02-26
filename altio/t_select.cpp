@@ -19,7 +19,7 @@ main(int argc, char *argv[])
 	fd_set readfds, writefds;
 	int ready,nfds,fd,numRead,j;
 	struct timeval timeout;
-	struct timeavl *pto;
+	struct timeval *pto;
 
 	char buf[10];//10个字符足够存储"rw\0"
 

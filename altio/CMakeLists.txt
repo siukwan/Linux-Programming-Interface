@@ -1,8 +1,9 @@
+cmake_minimum_required(VERSION 2.8)
 PROJECT (LINUX)
 #显示路径信息
 MESSAGE(STATUS "File:This is BINARY dir" ${LINUX_BINARY_DIR})
 MESSAGE(STATUS "File:This is SOURCE dir" ${LINUX_SOURCE_DIR})
-
+include_directories ("../lib/")
 #设置错误函数
 SET(LIB_FUNC_ERR_SRC ../lib/error_functions.cpp)
 MESSAGE(STATUS "LINUX_FILEIO:This is func_err dir" ${LIB_FUNC_ERR_SRC})
