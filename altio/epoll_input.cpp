@@ -12,6 +12,8 @@ main(int argc, char *argv[])
 	struct epoll_event ev;
 	struct epoll_event evlist[MAX_EVENTS];
 	char buf[MAX_BUF];
+	
+	//使用说明
 	if(argc < 2|| strcmp(argv[1], "--help") == 0)
 		usageErr("%s file ..\n",argv[0]);
 
