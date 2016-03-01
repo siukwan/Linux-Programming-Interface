@@ -7,6 +7,7 @@
 
 static volatile sig_atomic_t gotSigio = 0;
 
+//信号处理函数
 static void
 sigioHandler(int sig)
 {
